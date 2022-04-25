@@ -1,0 +1,43 @@
+show databases;
+use demo;
+show tables;
+select * from demo ;
+
+select * from playlist;
+
+select * from user;
+
+CREATE table track(track_id int(30) PRIMARY KEY,track_name varchar(30),playlist_id int, FOREIGN KEY(playlist_id) REFERENCES playlist(playlist_id));
+
+show tables;
+
+insert into user(user_id, user_name,user_email,user_password) values (101,'Ankita','ankita@gmail.com','pass@23'),
+(102,'Naina','naina@gmail.com','pass@76'),(103,'Pooja','pooja@gmail.com','passwo@23'),(104,'Suyog','suiyo@gmail.com','pass@99'),
+(105,'Tanuja','tan@gmail.com','pass@123'),(106,'Kunj','kunti@gmail.com','pass@55'),(107,'Namu','namu@gmail.com','passwrd@66');
+
+insert into playlist(playlist_id,playlist_name) values (1,'SavanSongs'),(2,'BhaktigeeetSongs'),(3,'LoveSongs'),(4,'BollywoodSongs'),(5,'KHasssSongs');
+
+insert into track(track_id,track_name ) values (1001,'Silent'),(1002,'Love'),(1003,'Hearttouching'),(1005,'Sad'),(1006,'Base'),(1007,'Melodious'),(1008,'Khass'),(1009,'Presence'),(1010,'Devil');
+
+desc user;
+select * from user;
+select * from playlist;
+select * from track;
+
+
+select * from user INNER join playlist on user.user_id = playlist.user_id;  
+
+select * from user LEFT join playlist ON user.user_id = playlist.user_id;
+
+
+select * from user Right join playlist ON user.user_id = playlist.user_id;
+
+select * from 
+user JOIN playlist
+where user.user_id = playlist.user_id AND (user.user_id=102);
+
+select * from user
+Inner join playlist st
+ON user.user_id = st.playlist_id
+Inner join track ON
+st.playlist_id = track.track_id;
