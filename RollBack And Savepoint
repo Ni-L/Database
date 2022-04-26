@@ -1,0 +1,95 @@
+show databases;
+use demo;
+show tables;
+use transaction;
+show tables;
+drop database transaction;
+create database transaction;
+create database Transaction;
+use Transaction;
+create table employee(emp_id int,emp_name varchar(200),emp_salary varchar (200),Age int(20),Address varchar(200));
+insert into employee(emp_id,emp_name,emp_salary,Age,Address) values (101,'Nilima',20000,35,'At post chohotta baar'),
+(102,'Ankita',25000,25,'Akola')
+,(103,'juli',30000,20,'Mumbai'),(104,'Bob',50000,50,'Hydrabad')
+,(105,'Kisna',60000,40,'Banglore'),(106,'Sami',80000,47,'Bengal'),
+(107,'Kantu',70000,56,'Gujrat');
+select * from employee;
+
+create table Orders(order_id int ,product_id int,product_name varchar(200));
+  
+  insert into Orders(order_id,product_id,product_name) values (1,567489,'Laptop'),
+ (2,568789,'Mobile'), (3,563689,'Fan'), (4,522229,'Kooler'),
+  (5,566779,'AC'), (6,667788,'freez'), (7,999977,'Kent');
+  
+  
+  SET autocommit = ON;
+  
+  
+START TRANSACTION;  
+
+SELECT @emp_salary:= MAX(emp_salary) FROM employee;  
+
+insert into employee(emp_id,emp_name,emp_salary,Age,Address) values (108,'bula',99000,39,'chandur');
+
+
+insert into Orders(order_id,product_id,product_name) values (8,900002,'Doors');
+
+COMMIT;  
+
+START TRANSACTION; 
+ 
+show databases;
+
+use transaction;
+
+DELETE FROM Orders;
+
+select * from Orders;
+rollback;
+
+select * from Orders;
+
+START TRANSACTION;  
+use transaction;
+
+show tables;
+
+insert into Orders(order_id,product_id,product_name) values (9,900087,'Locks');
+rollback;
+
+create table employee(emp_id int,emp_name varchar(200),emp_salary varchar (200),Age int(20),Address varchar(200));
+
+insert into employee(emp_id,emp_name,emp_salary,Age,Address) values (101,'Nilima',20000,35,'At post chohotta baar'),
+(102,'Ankita',25000,25,'Akola')
+,(103,'juli',30000,20,'Mumbai'),(104,'Bob',50000,50,'Hydrabad')
+,(105,'Kisna',60000,40,'Banglore'),(106,'Sami',80000,47,'Bengal'),
+(107,'Kantu',70000,56,'Gujrat');
+
+select * from employee;
+
+create table Orders(order_id int ,product_id int,product_name varchar(200));
+  
+  insert into Orders(order_id,product_id,product_name) values (1,567489,'Laptop'),
+ (2,568789,'Mobile'), (3,563689,'Fan'), (4,522229,'Kooler'),
+  (5,566779,'AC'), (6,667788,'freez'), (7,999977,'Kent');
+  
+  START TRANSACTION;  
+  
+  insert into Orders(order_id,product_id,product_name) values (8,900087,'Locks');
+  
+  SAVEPOINT my_savepoint;  
+  
+  insert into Orders(order_id,product_id,product_name) values (9,9066667,'Books');
+  
+  ROLLBACK TO SAVEPOINT my_savepoint;  
+  
+  commit;
+  
+  select * from Orders;
+
+  insert into Orders(order_id,product_id,product_name) values (9,9066667,'Books');
+  
+  SAVEPOINT my_savepoint; 
+  commit;
+
+
